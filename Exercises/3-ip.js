@@ -1,11 +1,11 @@
 'use strict';
-
+//ESLint цю програму не перевірив
+// бо на кожну відмінну від оригінальної пише, що або замала довжина
+// або завелика
 const ipToInt = (ip = '127.0.0.1') => {
-  // Parse ip address as string, for example '10.0.0.1'
-  // to ['10', '0', '0', '1'] to [10, 0, 0, 1]
-  // and convert to Number value 167772161 with bitwise shift
-  // (10 << 8 << 8 << 8) + (0 << 8 << 8) + (0 << 8) + 1 === 167772161
-  // Use Array.prototype.reduce of for loop
+  const IP = ip.split('.').map((x) => parseInt(x));
+  const ToValue = (res, item) =>  (res << 8) + item;
+  return IP.reduce(ToValue, 0);
 };
 
 module.exports = { ipToInt };
